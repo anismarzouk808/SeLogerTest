@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SeLoger Test</string>
+    <string name="message_error_has_occurred">Une erreur s\'est produite, veuillez réessayer plus tard.</string>
+
+    <string name="text_error">Erreur</string>
+    <string name="text_Ok">OK</string>
+
+    <string name="text_ads_rooms">%1$dp</string>
+    <string name="text_ads_bedrooms">%1$dch </string>
+    <string name="text_ads_area">%1$.1fm²</string>
+</resources>

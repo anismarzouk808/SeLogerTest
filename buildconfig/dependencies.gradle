@@ -1,0 +1,58 @@
+ext {
+
+    libraries = [
+            kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib:$libsVersion.kotlin",
+            coreKtx                 : "androidx.core:core-ktx:$libsVersion.core",
+
+            constraint              : "androidx.constraintlayout:constraintlayout:$libsVersion.constraint",
+
+            /** https://github.com/google/dagger */
+            dagger                  : "com.google.dagger:dagger:$libsVersion.dagger",
+            daggerCompiler          : "com.google.dagger:dagger-compiler:$libsVersion.dagger",
+            daggerAndroid           : "com.google.dagger:dagger-android:$libsVersion.dagger",
+            daggerAndroidSupp       : "com.google.dagger:dagger-android-support:$libsVersion.dagger",
+            daggerAndroidCompiler   : "com.google.dagger:dagger-android-processor:$libsVersion.dagger",
+
+            /** https://square.github.io/retrofit/ */
+            retrofit                : "com.squareup.retrofit2:retrofit:$libsVersion.retrofit",
+            retrofitRxjava          : "com.squareup.retrofit2:adapter-rxjava2:$libsVersion.retrofit",
+            retrofitGson            : "com.squareup.retrofit2:converter-gson:$libsVersion.retrofit",
+
+            /** https://github.com/square/okhttp */
+            okhttp                  : "com.squareup.okhttp3:okhttp:$libsVersion.okhttp",
+            okhttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:$libsVersion.okhttp",
+
+            /** http://facebook.github.io/stetho/ */
+            stethoOkhttp            : "com.facebook.stetho:stetho-okhttp3:$libsVersion.stetho",
+
+            /** https://github.com/facebook/fresco */
+            fresco                  : "com.facebook.fresco:fresco:$libsVersion.fresco",
+
+            /** https://github.com/JakeWharton/timber */
+            timber                  : "com.jakewharton.timber:timber:$libsVersion.timber",
+
+            /** Android x */
+            supportAppCompat        : "androidx.appcompat:appcompat:$libsVersion.appCompat",
+            navigationFragmentKtx   : "androidx.navigation:navigation-fragment-ktx:$libsVersion.navigation",
+            navigationUiKtx         : "androidx.navigation:navigation-ui-ktx:$libsVersion.navigation",
+            navigationRuntimeKtx   : "androidx.navigation:navigation-runtime-ktx:$libsVersion.navigation",
+
+            /** Rx */
+            rxAndroid               : "io.reactivex.rxjava2:rxandroid:$libsVersion.rxandroid",
+            rxJava                  : "io.reactivex.rxjava2:rxjava:$libsVersion.rxjava"
+    ]
+
+    testLibraries = [
+            /** https://github.com/junit-team/junit4 */
+            junitTest               : "junit:junit:$testLibsVersion.junit",
+            kotlinTest              : "org.jetbrains.kotlin:kotlin-test-junit:$libsVersion.kotlin",
+
+            /** https://github.com/mockito/mockito */
+            mockito                 : "org.mockito:mockito-core:$testLibsVersion.mockito",
+            mockitoKotlin           : "org.mockito.kotlin:mockito-kotlin:$testLibsVersion.mockitoKotlin",
+
+            /** https://github.com/MarkusAmshove/Kluent */
+            kluent        : "org.amshove.kluent:kluent:$testLibsVersion.kluent",
+            kluentAndroid : "org.amshove.kluent:kluent-android:$testLibsVersion.kluent"
+    ]
+}

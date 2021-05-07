@@ -1,0 +1,66 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+apply from: '../buildconfig/versioning.gradle'
+apply from: '../buildconfig/dependencies.gradle'
+
+android {
+    compileSdkVersion compile_sdk
+
+    defaultConfig {
+        applicationId "com.miled.seloger"
+        minSdkVersion min_sdk
+        targetSdkVersion target_sdk
+        versionCode version_code
+        versionName version_name
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(":commun")
+    implementation project(":data")
+    implementation project(":presentation")
+    implementation project(":domain")
+
+    //Kotlin
+    implementation libraries.kotlin
+
+    //View
+    implementation libraries.fresco
+
+    //Debugging
+    implementation libraries.timber
+
+    //Networking
+    implementation libraries.retrofit
+    implementation libraries.retrofitRxjava
+    implementation libraries.retrofitGson
+    implementation libraries.okhttp
+    implementation libraries.okhttpLoggingInterceptor
+    implementation libraries.stethoOkhttp
+
+    //dagger
+    implementation libraries.dagger
+    kapt libraries.daggerCompiler
+    implementation libraries.daggerAndroid
+    implementation libraries.daggerAndroidSupp
+    kapt libraries.daggerAndroidCompiler
+}

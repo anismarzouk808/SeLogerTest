@@ -1,0 +1,55 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+}
+apply from: '../buildconfig/versioning.gradle'
+apply from: '../buildconfig/dependencies.gradle'
+
+android {
+    compileSdkVersion compile_sdk
+
+    defaultConfig {
+        minSdkVersion min_sdk
+        targetSdkVersion target_sdk
+        versionCode domain_version_code
+        versionName domain_version_name
+        buildConfigField "String", "API_ADS_URL", '"https://gsl-apps-technical-test.dignp.com/"'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    //Kotlin
+    implementation libraries.kotlin
+
+    //dagger
+    implementation libraries.dagger
+    kapt libraries.daggerCompiler
+
+    //Debugging
+    implementation libraries.timber
+
+    //Rx
+    implementation libraries.rxJava
+
+    //Unit tests dependencies
+    testImplementation testLibraries.junitTest
+    testImplementation testLibraries.kotlinTest
+    testImplementation testLibraries.mockito
+}
