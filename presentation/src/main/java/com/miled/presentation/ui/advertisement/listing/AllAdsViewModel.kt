@@ -1,47 +1,70 @@
 package com.miled.presentation.ui.advertisement.listing
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.miled.core.extentions.setLoadingState
-import com.miled.core.misc.DataWrapper
+import androidx.lifecycle.*
+import androidx.savedstate.SavedStateRegistryOwner
+import com.miled.commun.disposeBy
 import com.miled.core.misc.ErrorType
-import com.miled.core.misc.Failure
-import com.miled.core.misc.Success
 import com.miled.domain.usecase.GetAllAdsUseCase
-import com.miled.presentation.ui.coreview.BaseViewModel
 import com.miled.presentation.ui.models.AdvertisementUI
 import com.miled.presentation.ui.models.toUi
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class AllAdsViewModel @Inject constructor(
-    private val getAllAdsUseCase: GetAllAdsUseCase,
-) :
-    BaseViewModel() {
+class AllAdsViewModel(
+    private val savedStateHandle: SavedStateHandle,
+    private val getAllAdsUseCase: GetAllAdsUseCase
+) : ViewModel() {
 
-    private val _adsLiveData = MutableLiveData<DataWrapper<List<AdvertisementUI>>>()
+    private val disposables = CompositeDisposable()
+    private val _adsLiveData = MutableLiveData<GetAdState>()
 
-    val adsLiveData: LiveData<DataWrapper<List<AdvertisementUI>>> get() = _adsLiveData
+    val adsLiveData: LiveData<GetAdState> get() = _adsLiveData
 
     fun getAllAds() {
-        _adsLiveData.setLoadingState(true)
-        getAllAdsUseCase().sub({
-            _adsLiveData.setLoadingState(false)
-            _adsLiveData.postValue(Success(it.items.map { it.toUi() }))
-        }, { throwable ->
-            _adsLiveData.setLoadingState(false)
-            _adsLiveData.postValue(Failure(AllAdsErrorType.GET_All_ADS_ERROR, throwable))
-        })
+        _adsLiveData.value = GetAdState.Loading
+        getAllAdsUseCase()
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(
+                { response ->
+                    _adsLiveData.value = GetAdState.Success(response.items.map { it.toUi() })
+                }, { throwable ->
+                    _adsLiveData.value = GetAdState.Error(throwable.message)
+                }
+            )
+            .disposeBy(disposables)
+    }
+
+    sealed class GetAdState {
+        object Loading : GetAdState()
+        data class Success(val ads: List<AdvertisementUI>) : GetAdState()
+        data class Error(val message: String?) : GetAdState()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposables.clear()
     }
 
     fun navigateToStoriesInfo(advertisementId: Int) {
-        navigate(
-            AllAdsFragmentDirections.actionAdslistfragmentToAdsdetailsfragment(
-                advertisementId
-            )
-        )
-    }
-}
 
-enum class AllAdsErrorType : ErrorType {
-    GET_All_ADS_ERROR
+    }
+
+    class Factory @Inject constructor(
+        owner: SavedStateRegistryOwner,
+        private val getAllAdsUseCase: GetAllAdsUseCase
+    ) : AbstractSavedStateViewModelFactory(owner, null) {
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel?> create(
+            key: String,
+            modelClass: Class<T>,
+            handle: SavedStateHandle
+        ): T {
+            return AllAdsViewModel(
+                handle, getAllAdsUseCase
+            ) as T
+        }
+    }
 }

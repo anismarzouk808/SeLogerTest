@@ -2,60 +2,63 @@ package com.miled.presentation.ui.advertisement.listing
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
-import com.miled.core.misc.Failure
-import com.miled.core.misc.Loading
-import com.miled.core.misc.Success
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.miled.commun.exhaustive
 import com.miled.presentation.R
-import com.miled.presentation.ui.coreview.BaseFragment
+import com.miled.presentation.databinding.FragmentAdsListBinding
+import com.miled.presentation.ui.models.AdvertisementUI
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class AllAdsFragment : BaseFragment<AllAdsViewModel>(
-    AllAdsViewModel::class, R.layout.fragment_ads_list
-) {
+class AllAdsFragment : DaggerFragment(R.layout.fragment_ads_list) {
 
     private val allAdsAdapter by lazy { AllAdsAdapter() }
-    private lateinit var adsRecyclerView: RecyclerView
+
+    @Inject
+    lateinit var viewModelFactory: AllAdsViewModel.Factory
+    private val viewModel: AllAdsViewModel by viewModels(factoryProducer = { viewModelFactory })
+
+    private var _binding: FragmentAdsListBinding? = null
+    private val binding: FragmentAdsListBinding get() = requireNotNull(_binding)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        _binding = FragmentAdsListBinding.bind(view)
         super.onViewCreated(view, savedInstanceState)
-        bindToNavigationCommands(viewModel)
-        initView()
         initRecyclerView()
         observeData()
         viewModel.getAllAds()
     }
 
-    private fun initView() {
-        view?.run {
-            adsRecyclerView = findViewById(R.id.all_ads_recyclerView)
-        }
-    }
-
 
     private fun initRecyclerView() {
-        adsRecyclerView.adapter = allAdsAdapter
+        binding.allAdsRecyclerView.adapter = allAdsAdapter
         allAdsAdapter.itemClickListener = {
-            viewModel.navigateToStoriesInfo(it)
+            findNavController().navigate(
+                AllAdsFragmentDirections.actionAdslistfragmentToAdsdetailsfragment(it)
+            )
         }
     }
 
     private fun observeData() {
-        viewModel.adsLiveData.observe(viewLifecycleOwner, Observer { dataWrapper ->
-            when (dataWrapper) {
-                is Success -> {
-                    allAdsAdapter.items = dataWrapper.data
-                    toggleError(false, null)
-                }
-                is Failure -> {
-                    toggleError(true, dataWrapper.throwable?.message)
-                }
-
-                is Loading -> {
-                    toggleLoading(dataWrapper.loading)
-                    toggleError(false, null)
-                }
-            }
+        viewModel.adsLiveData.observe(viewLifecycleOwner, { state ->
+            when (state) {
+                is AllAdsViewModel.GetAdState.Success -> handleSuccess(state.ads)
+                is AllAdsViewModel.GetAdState.Error -> handleState()
+                is AllAdsViewModel.GetAdState.Loading -> handleState()
+            }.exhaustive
         })
     }
+
+    private fun handleSuccess(ads: List<AdvertisementUI>) {
+        allAdsAdapter.items = ads
+    }
+
+    override fun onDestroyView() {
+        binding.allAdsRecyclerView.adapter = null
+        _binding = null
+        super.onDestroyView()
+    }
+
+    private fun handleState() = Unit
 }

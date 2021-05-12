@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.drawee.view.SimpleDraweeView
-import com.miled.commun.utils.toPriceFormat
+import com.miled.commun.toPriceFormat
 import com.miled.core.extentions.getContext
 import com.miled.core.extentions.inflate
 import com.miled.core.extentions.loadUrl

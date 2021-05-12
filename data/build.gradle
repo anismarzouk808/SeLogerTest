@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 apply from: '../buildconfig/versioning.gradle'
 apply from: '../buildconfig/dependencies.gradle'
@@ -33,6 +34,7 @@ android {
 dependencies {
 
     implementation project(":domain")
+    implementation project(":Network")
 
     //Kotlin
     implementation libraries.kotlin
@@ -52,4 +54,8 @@ dependencies {
     testImplementation testLibraries.mockitoKotlin
     testImplementation testLibraries.kluent
     testImplementation testLibraries.kluentAndroid
+
+    //dagger
+    implementation libraries.dagger
+    kapt libraries.daggerCompiler
 }

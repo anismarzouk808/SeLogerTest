@@ -1,7 +1,7 @@
-package com.miled.seloger.dagger.annotation
+package com.miled.seoger.network.annotation
 
 import javax.inject.Qualifier
 
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
-annotation class AllAdsCallApi
+annotation class SelogerRetrofit

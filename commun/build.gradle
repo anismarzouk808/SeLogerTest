@@ -13,4 +13,6 @@ java {
 dependencies {
     //Kotlin
     implementation libraries.kotlin
+    //Rx
+    implementation libraries.rxJava
 }
