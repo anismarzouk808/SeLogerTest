@@ -3,7 +3,6 @@ package com.miled.presentation.ui.advertisement.listing
 import androidx.lifecycle.*
 import androidx.savedstate.SavedStateRegistryOwner
 import com.miled.commun.disposeBy
-import com.miled.core.misc.ErrorType
 import com.miled.domain.usecase.GetAllAdsUseCase
 import com.miled.presentation.ui.models.AdvertisementUI
 import com.miled.presentation.ui.models.toUi
@@ -46,10 +45,6 @@ class AllAdsViewModel(
     override fun onCleared() {
         super.onCleared()
         disposables.clear()
-    }
-
-    fun navigateToStoriesInfo(advertisementId: Int) {
-
     }
 
     class Factory @Inject constructor(

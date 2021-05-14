@@ -14,6 +14,8 @@ android {
         versionName = "1.0"
     }
 
+    buildFeatures.viewBinding = true
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -39,6 +41,7 @@ dependencies {
         Libraries.timber,
         Libraries.rxAndroid,
         Libraries.navigationFragmentKtx,
-        Libraries.navigationUiKtx
+        Libraries.navigationUiKtx,
+        Libraries.constraintLayout
     )
 }
