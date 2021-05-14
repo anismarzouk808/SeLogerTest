@@ -1,4 +1,4 @@
-package com.miled.core.extentions
+package com.miled.common.android.extentions
 
 import android.graphics.drawable.Animatable
 import android.net.Uri

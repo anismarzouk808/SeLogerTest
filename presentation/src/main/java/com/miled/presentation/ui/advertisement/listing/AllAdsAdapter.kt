@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.drawee.view.SimpleDraweeView
+import com.miled.common.android.extentions.getContext
+import com.miled.common.android.extentions.inflate
+import com.miled.common.android.extentions.loadUrl
 import com.miled.common.toPriceFormat
-import com.miled.core.extentions.getContext
-import com.miled.core.extentions.inflate
-import com.miled.core.extentions.loadUrl
 import com.miled.presentation.R
 import com.miled.presentation.ui.models.AdvertisementUI
 
@@ -65,7 +65,7 @@ class AllAdsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     /**
-     * View holder for [Stories] [View]
+     * View holder for Stories [View]
      */
     class StorieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val draweeAdsPicture: SimpleDraweeView = view.findViewById(R.id.drawee_ads_picture)

@@ -139,7 +139,7 @@
 
     <include layout="@layout/common_loader_layout" />
 
-    <com.miled.core.common.ErrorView
+    <com.miled.common.android.views.ErrorView
         android:id="@+id/errorView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -1,4 +1,4 @@
-package com.miled.core.components
+package com.miled.common.android.components
 
 
 /*
@@ -52,7 +52,7 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
         }
 
         // Observe the internal MutableLiveData
-        super.observe(owner, Observer<T> { t ->
+        super.observe(owner, { t ->
             if (mPending.compareAndSet(true, false)) {
                 observer.onChanged(t)
             }

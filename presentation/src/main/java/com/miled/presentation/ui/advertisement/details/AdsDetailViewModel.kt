@@ -3,7 +3,7 @@ package com.miled.presentation.ui.advertisement.details
 import androidx.lifecycle.*
 import androidx.savedstate.SavedStateRegistryOwner
 import com.miled.common.disposeBy
-import com.miled.core.misc.ErrorType
+import com.miled.common.android.misc.ErrorType
 import com.miled.domain.usecase.GetAdsDetailsUseCase
 import com.miled.presentation.ui.models.AdvertisementUI
 import com.miled.presentation.ui.models.toUi

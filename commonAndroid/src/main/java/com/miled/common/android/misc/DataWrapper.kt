@@ -1,4 +1,4 @@
-package com.miled.core.misc
+package com.miled.common.android.misc
 
 sealed class DataWrapper<out T>
 

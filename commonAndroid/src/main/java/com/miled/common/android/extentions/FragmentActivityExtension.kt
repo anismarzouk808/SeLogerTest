@@ -1,4 +1,4 @@
-package com.miled.core.extentions
+package com.miled.common.android.extentions
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

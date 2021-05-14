@@ -1,9 +1,9 @@
-package com.miled.core.common
+package com.miled.common.android.views
 
 import android.annotation.SuppressLint
 import android.view.View
 import androidx.core.view.isVisible
-import com.miled.core.R
+import com.miled.common.android.R
 
 interface LoaderInterface {
 

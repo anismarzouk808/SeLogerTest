@@ -1,4 +1,4 @@
-package com.miled.core.common
+package com.miled.common.android.views
 
 import android.content.Context
 import android.util.AttributeSet
@@ -8,8 +8,8 @@ import androidx.annotation.StringRes
 import androidx.annotation.VisibleForTesting
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
-import com.miled.core.R
-import com.miled.core.databinding.CommonandroidLayoutErrorBinding
+import com.miled.common.android.R
+import com.miled.common.android.databinding.CommonandroidLayoutErrorBinding
 
 class ErrorView : ConstraintLayout {
 
