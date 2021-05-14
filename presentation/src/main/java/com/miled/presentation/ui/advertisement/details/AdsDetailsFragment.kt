@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.miled.commun.exhaustive
 import com.miled.commun.toPriceFormat
+import com.miled.core.common.LoaderInterface
 import com.miled.core.extentions.loadUrl
 import com.miled.presentation.R
 import com.miled.presentation.databinding.FragmentAdsInfoBinding
@@ -13,7 +14,7 @@ import com.miled.presentation.ui.models.AdvertisementUI
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class AdsDetailsFragment : DaggerFragment(R.layout.fragment_ads_info) {
+class AdsDetailsFragment : DaggerFragment(R.layout.fragment_ads_info), LoaderInterface {
 
     private val arguments: AdsDetailsFragmentArgs by navArgs()
 
@@ -76,21 +77,23 @@ class AdsDetailsFragment : DaggerFragment(R.layout.fragment_ads_info) {
     }
 
     private fun handleSuccess(advertismentUi: AdvertisementUI) {
-        //hide Loading
+        hideRequestLoader()
         fillView(advertismentUi)
     }
 
     private fun handleLoading() {
-        //show Loading
+        showRequestLoader()
     }
 
     private fun handleError(message: String?) {
-        //hide Loading
-        //show message Error
+        hideRequestLoader()
+        binding.errorView.setProperties(title = message.orEmpty(), retryBtnVisible = true)
     }
 
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
+
+    override val loaderContainer: View get() = binding.root
 }
