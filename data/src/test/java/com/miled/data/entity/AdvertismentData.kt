@@ -1,9 +1,9 @@
 package com.miled.data.entity
 
-import com.miled.data.entities.AdvertisementDto
-import com.miled.data.entities.ListingResponseDto
-import com.miled.domain.models.Advertisement
-import com.miled.domain.models.ListingResponse
+import com.miled.data.entities.AdResponse
+import com.miled.data.entities.AdsResponse
+import com.miled.domain.models.Ad
+import com.miled.domain.models.Ads
 
 
 class AdvertismentData {
@@ -12,24 +12,24 @@ class AdvertismentData {
     val domain by lazy { Domain() }
 
     class FromServer {
-        val advertisementDto = AdvertisementDto(
+        val advertisementDto = AdResponse(
             1, 4, "Villers-sur-Mer",
             250.0, "url pic", 1500000, "GSL EXPLORE", "Maison - Villa", 8
         )
 
         private val totalCount = 4
 
-        val listingResponseDto = ListingResponseDto(listOf(advertisementDto), totalCount)
+        val listingResponseDto = AdsResponse(listOf(advertisementDto), totalCount)
     }
 
     class Domain {
-        val advertisement = Advertisement(
+        val advertisement = Ad(
             1, 4, "Villers-sur-Mer",
             250.0, "url pic", 1500000, "GSL EXPLORE", "Maison - Villa", 8
         )
 
         private val totalCount = 4
 
-        val listingResponse = ListingResponse(listOf(advertisement), totalCount)
+        val listingResponse = Ads(listOf(advertisement), totalCount)
     }
 }

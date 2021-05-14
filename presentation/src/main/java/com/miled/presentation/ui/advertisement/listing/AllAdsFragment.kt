@@ -7,9 +7,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.miled.common.android.views.LoaderInterface
 import com.miled.common.exhaustive
+import com.miled.domain.models.Ad
 import com.miled.presentation.R
 import com.miled.presentation.databinding.FragmentAdsListBinding
-import com.miled.presentation.ui.models.AdvertisementUI
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -55,7 +55,7 @@ class AllAdsFragment : DaggerFragment(R.layout.fragment_ads_list), LoaderInterfa
         })
     }
 
-    private fun handleSuccess(ads: List<AdvertisementUI>) {
+    private fun handleSuccess(ads: List<Ad>) {
         hideRequestLoader()
         allAdsAdapter.items = ads
     }
@@ -76,6 +76,5 @@ class AllAdsFragment : DaggerFragment(R.layout.fragment_ads_list), LoaderInterfa
         super.onDestroyView()
     }
 
-    private fun handleState() = Unit
     override val loaderContainer: View get() = binding.root
 }

@@ -29,7 +29,7 @@ class AdsRepositoryTest {
         Mockito.`when`(apiService.getAllAds())
             .thenAnswer { Single.just(data.fromServer.listingResponseDto) }
         // When
-        val observer = repository.getAllAds().test()
+        val observer = repository.getAds().test()
         // Then
         observer.assertComplete()
             .assertNoErrors()
@@ -43,7 +43,7 @@ class AdsRepositoryTest {
         Mockito.`when`(apiService.getAdsDetail(1))
             .thenAnswer { Single.just(data.fromServer.advertisementDto) }
         // When
-        val observer = repository.getAdsDetails(1).test()
+        val observer = repository.getAdDetails(1).test()
         // Then
         observer.assertComplete()
             .assertNoErrors()

@@ -9,14 +9,14 @@ import com.miled.common.android.extentions.getContext
 import com.miled.common.android.extentions.inflate
 import com.miled.common.android.extentions.loadUrl
 import com.miled.common.toPriceFormat
+import com.miled.domain.models.Ad
 import com.miled.presentation.R
-import com.miled.presentation.ui.models.AdvertisementUI
 
 class AllAdsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var itemClickListener: ((Int) -> Unit)? = null
 
-    var items = emptyList<AdvertisementUI?>()
+    var items = emptyList<Ad>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -33,10 +33,10 @@ class AllAdsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = items[position]
-        holder.itemView.setOnClickListener { itemClickListener?.invoke(item?.id!!) }
+        holder.itemView.setOnClickListener { itemClickListener?.invoke(item.id) }
 
         with(holder as StorieViewHolder) {
-            with(item as AdvertisementUI) {
+            with(item) {
                 draweeAdsPicture.loadUrl(this.url)
                 textAdsType.text = this.propertyType
                 textAdsPrice.text = this.price.toPriceFormat()

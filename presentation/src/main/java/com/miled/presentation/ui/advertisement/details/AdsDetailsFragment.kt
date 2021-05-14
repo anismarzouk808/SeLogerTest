@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.miled.common.android.extentions.loadUrl
+import com.miled.common.android.views.LoaderInterface
 import com.miled.common.exhaustive
 import com.miled.common.toPriceFormat
-import com.miled.common.android.views.LoaderInterface
-import com.miled.common.android.extentions.loadUrl
+import com.miled.domain.models.Ad
 import com.miled.presentation.R
 import com.miled.presentation.databinding.FragmentAdsInfoBinding
-import com.miled.presentation.ui.models.AdvertisementUI
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -33,31 +33,31 @@ class AdsDetailsFragment : DaggerFragment(R.layout.fragment_ads_info), LoaderInt
         viewModel.getAdsDetails(arguments.advertisementId)
     }
 
-    private fun fillView(advertisementui: AdvertisementUI) {
-        binding.draweeAdsPicture.loadUrl(advertisementui.url)
-        binding.textAdsType.text = advertisementui.propertyType
-        binding.textAdsPrice.text = advertisementui.price.toPriceFormat()
+    private fun fillView(ad: Ad) {
+        binding.draweeAdsPicture.loadUrl(ad.url)
+        binding.textAdsType.text = ad.propertyType
+        binding.textAdsPrice.text = ad.price.toPriceFormat()
 
-        if (advertisementui.rooms != 0) {
+        if (ad.rooms != 0) {
             binding.textRoomNumber.visibility = View.VISIBLE
             binding.textRoomNumber.text =
-                getString(R.string.text_ads_rooms, advertisementui.rooms)
+                getString(R.string.text_ads_rooms, ad.rooms)
         }
 
-        if (advertisementui.bedrooms != 0) {
+        if (ad.bedrooms != 0) {
             binding.textBedroomNumber.visibility = View.VISIBLE
             binding.textBedroomNumber.text =
-                getString(R.string.text_ads_bedrooms, advertisementui.bedrooms)
+                getString(R.string.text_ads_bedrooms, ad.bedrooms)
         }
 
-        if (advertisementui.area != 0.0) {
+        if (ad.area != 0.0) {
             binding.textArea.visibility = View.VISIBLE
             binding.textArea.text =
-                getString(R.string.text_ads_area, advertisementui.area)
+                getString(R.string.text_ads_area, ad.area)
         }
 
-        binding.textAdsCity.text = advertisementui.city
-        binding.textAdsProfessional.text = advertisementui.professional
+        binding.textAdsCity.text = ad.city
+        binding.textAdsProfessional.text = ad.professional
     }
 
     private fun initListener() {
@@ -76,9 +76,9 @@ class AdsDetailsFragment : DaggerFragment(R.layout.fragment_ads_info), LoaderInt
         })
     }
 
-    private fun handleSuccess(advertismentUi: AdvertisementUI) {
+    private fun handleSuccess(ad: Ad) {
         hideRequestLoader()
-        fillView(advertismentUi)
+        fillView(ad)
     }
 
     private fun handleLoading() {

@@ -3,9 +3,8 @@ package com.miled.presentation.ui.advertisement.details
 import androidx.lifecycle.*
 import androidx.savedstate.SavedStateRegistryOwner
 import com.miled.common.disposeBy
+import com.miled.domain.models.Ad
 import com.miled.domain.usecase.GetAdsDetailsUseCase
-import com.miled.presentation.ui.models.AdvertisementUI
-import com.miled.presentation.ui.models.toUi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -28,7 +27,7 @@ class AdsDetailViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({
-                _adsDetailLiveData.value = AdDetailState.Success(it.toUi())
+                _adsDetailLiveData.value = AdDetailState.Success(it)
             }, {
                 _adsDetailLiveData.value = AdDetailState.Error(it.message)
             }).disposeBy(disposables)
@@ -36,7 +35,7 @@ class AdsDetailViewModel(
 
     sealed class AdDetailState {
         object Loading : AdDetailState()
-        data class Success(val details: AdvertisementUI) : AdDetailState()
+        data class Success(val details: Ad) : AdDetailState()
         data class Error(val message: String?) : AdDetailState()
     }
 

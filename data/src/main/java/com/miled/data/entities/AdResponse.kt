@@ -2,39 +2,39 @@ package com.miled.data.entities
 
 import com.google.gson.annotations.SerializedName
 
-data class AdvertisementDto(
+data class AdResponse(
     @SerializedName("id")
-    val id: Int,
+    val id: Int?,
 
     @SerializedName("bedrooms")
-    val bedrooms: Int,
+    val bedrooms: Int?,
 
     @SerializedName("city")
-    val city: String,
+    val city: String?,
 
     @SerializedName("area")
-    val area: Double,
+    val area: Double?,
 
     @SerializedName("url")
-    val url: String,
+    val url: String?,
 
     @SerializedName("price")
-    val price: Int,
+    val price: Int?,
 
     @SerializedName("professional")
-    val professional: String,
+    val professional: String?,
 
     @SerializedName("propertyType")
-    val propertyType: String,
+    val propertyType: String?,
 
     @SerializedName("rooms")
-    val rooms: Int
+    val rooms: Int?
 )
 
-data class ListingResponseDto(
+data class AdsResponse(
     @SerializedName("items")
-    val items: List<AdvertisementDto>,
+    val items: List<AdResponse?>?,
 
     @SerializedName("totalCount")
-    val totalCount: Int,
+    val totalCount: Int?,
 )

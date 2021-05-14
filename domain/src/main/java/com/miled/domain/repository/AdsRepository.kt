@@ -1,10 +1,10 @@
 package com.miled.domain.repository
 
-import com.miled.domain.models.Advertisement
-import com.miled.domain.models.ListingResponse
+import com.miled.domain.models.Ad
+import com.miled.domain.models.Ads
 import io.reactivex.Single
 
 interface AdsRepository {
-    fun getAllAds(): Single<ListingResponse>
-    fun getAdsDetails(advertisementId : Int): Single<Advertisement>
+    fun getAds(): Single<Ads>
+    fun getAdDetails(adId : Int): Single<Ad>
 }
