@@ -35,8 +35,6 @@ android {
 
 dependencies {
 
-
-
     implementationProjects(
         ":common",
         ":data",
