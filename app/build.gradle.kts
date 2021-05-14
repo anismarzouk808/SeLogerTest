@@ -38,7 +38,7 @@ dependencies {
 
 
     implementationProjects(
-        ":commun",
+        ":common",
         ":data",
         ":presentation",
         ":domain",

@@ -1,4 +1,4 @@
-package com.miled.commun
+package com.miled.common
 
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable

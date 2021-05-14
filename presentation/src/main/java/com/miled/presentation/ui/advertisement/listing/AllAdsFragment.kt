@@ -5,7 +5,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.miled.commun.exhaustive
+import com.miled.common.exhaustive
 import com.miled.core.common.LoaderInterface
 import com.miled.presentation.R
 import com.miled.presentation.databinding.FragmentAdsListBinding

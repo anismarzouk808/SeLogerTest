@@ -37,7 +37,7 @@ android {
 
 dependencies {
     implementationProjects(
-        ":commun",
+        ":common",
         ":core",
         ":domain"
     )

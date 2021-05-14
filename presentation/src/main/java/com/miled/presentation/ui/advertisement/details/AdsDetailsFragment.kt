@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.miled.commun.exhaustive
-import com.miled.commun.toPriceFormat
+import com.miled.common.exhaustive
+import com.miled.common.toPriceFormat
 import com.miled.core.common.LoaderInterface
 import com.miled.core.extentions.loadUrl
 import com.miled.presentation.R
