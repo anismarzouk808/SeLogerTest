@@ -4,11 +4,6 @@ buildscript {
         google()
         mavenCentral()
     }
-    dependencies {
-        classpath BuildPlugins.gradlePlugin
-        classpath BuildPlugins.kotlinGradlePlugin
-        classpath BuildPlugins.safeArgsPlugin
-    }
 }
 
 allprojects {

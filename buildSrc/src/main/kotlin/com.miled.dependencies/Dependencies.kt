@@ -7,6 +7,7 @@ object BuildPlugins {
 
     const val kotlinGradlePlugin =
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
+    const val seLogerConfigGradleModule = "seloger-config-module"
     const val gradlePlugin = "com.android.tools.build:gradle:${Versions.gradleVersion}"
     const val safeArgsPlugin =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${Libraries.Versions.navigation}"
