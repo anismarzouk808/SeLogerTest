@@ -4,12 +4,6 @@ buildscript {
         google()
         mavenCentral()
     }
-    dependencies {
-        apply from: 'buildconfig/versioning.gradle'
-        classpath "com.android.tools.build:gradle:${libsVersion.buildGradle}"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$libsVersion.kotlin"
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$libsVersion.navigation"
-    }
 }
 
 allprojects {

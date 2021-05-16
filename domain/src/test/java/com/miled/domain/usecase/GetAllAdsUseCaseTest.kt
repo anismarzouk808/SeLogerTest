@@ -26,7 +26,7 @@ class GetAllAdsUseCaseTest {
     @Test
     fun `test success call get all advertisement`() {
         val allmodels = AllModelsTest()
-        whenever(adsRepository.getAllAds()).thenReturn(
+        whenever(adsRepository.getAds()).thenReturn(
             Single.just(allmodels.listingResponse)
         )
 
@@ -37,7 +37,7 @@ class GetAllAdsUseCaseTest {
     @Test
     fun `test error call get all advertisement`() {
         val error = IOException()
-        whenever(adsRepository.getAllAds()).thenReturn(Single.error(error))
+        whenever(adsRepository.getAds()).thenReturn(Single.error(error))
         getAllAdsUseCase().test().assertError(error)
     }
 }

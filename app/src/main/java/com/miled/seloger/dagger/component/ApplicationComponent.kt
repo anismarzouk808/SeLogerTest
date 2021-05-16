@@ -1,13 +1,10 @@
 package com.miled.seloger.dagger.component
 
 import android.app.Application
-import com.miled.presentation.dagger.module.ActivityBindingModule
+import com.miled.data.injection.SeLogerApiModule
 import com.miled.presentation.dagger.module.FragmentBindingModule
-import com.miled.presentation.dagger.module.ViewModelModule
 import com.miled.seloger.dagger.module.ApplicationModule
-import com.miled.seloger.dagger.module.NetworkModule
-import com.miled.seloger.dagger.module.SeLogerApiModule
-import com.miled.seloger.dagger.module.UseCaseModule
+import com.miled.seoger.network.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -20,12 +17,9 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         ApplicationModule::class,
-        ActivityBindingModule::class,
         FragmentBindingModule::class,
-        ViewModelModule::class,
         NetworkModule::class,
-        SeLogerApiModule::class,
-        UseCaseModule::class
+        SeLogerApiModule::class
     ]
 )
 interface ApplicationComponent : AndroidInjector<DaggerApplication> {

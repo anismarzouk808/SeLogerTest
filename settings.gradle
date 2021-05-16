@@ -1,7 +1,8 @@
 rootProject.name = "SeLoger Test"
 include ':app'
 include ':presentation'
-include ':commun'
+include ':common'
 include ':data'
 include ':domain'
-include ':core'
+include ':commonAndroid'
+include ':Network'

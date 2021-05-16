@@ -19,7 +19,7 @@ class RemoteMapperKtTest {
         // Given
         val expected = data.domain.listingResponse
         // When
-        val domain = data.fromServer.listingResponseDto.toDomain()
+        val domain = data.fromServer.listingResponseDto.toAds()
         // Then
         domain `should be equal to` expected
     }
