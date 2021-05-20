@@ -15,7 +15,7 @@ object BuildPlugins {
     const val androidLibrary = "com.android.library"
     const val kotlinAndroid = "kotlin-android"
     const val kotlin = "kotlin"
-    const val kotlinAndroidExtensions = "kotlin-android-extensions"
+    const val KotlinParcelize = "org.jetbrains.kotlin.plugin.parcelize"
     const val Kapt = "kotlin-kapt"
     const val javaLibrary = "java-library"
     const val safeArgs = "androidx.navigation.safeargs.kotlin"
@@ -23,7 +23,7 @@ object BuildPlugins {
 }
 
 object AndroidSdk {
-    const val min = 23
+    const val min = 21
     const val compile = 30
     const val target = compile
 }
@@ -42,8 +42,11 @@ object Libraries {
         const val navigation: String = "2.3.1"
         const val rxandroid: String = "2.1.1"
         const val rxjava: String = "2.2.11"
+        const val desuagerJdk: String = "1.0.9"
     }
 
+
+    const val desuagerJdk = "com.android.tools:desugar_jdk_libs"
     const val kotlinStdLib =
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${BuildPlugins.Versions.kotlinVersion}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.jetpack}"

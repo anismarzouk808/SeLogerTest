@@ -3,7 +3,7 @@ plugins {
         BuildPlugins.androidLibrary,
         BuildPlugins.kotlinAndroid,
         BuildPlugins.seLogerConfigGradleModule,
-        BuildPlugins.kotlinAndroidExtensions,
+        BuildPlugins.KotlinParcelize,
         BuildPlugins.Kapt
     )
 }
@@ -22,4 +22,7 @@ dependencies {
         TestLibraries.kotlinTest,
         TestLibraries.mockito
     )
+
+
+
 }
