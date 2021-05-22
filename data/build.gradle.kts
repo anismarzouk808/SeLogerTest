@@ -27,11 +27,7 @@ dependencies {
 
     testImplementations(
         TestLibraries.junit4,
-        TestLibraries.kotlinTest,
-        TestLibraries.mockitoKotlin,
-        TestLibraries.mockito,
-        TestLibraries.kluent,
-        TestLibraries.kluentAndroid
+        TestLibraries.mockk
     )
 
     kapts(

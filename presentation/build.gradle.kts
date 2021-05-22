@@ -40,11 +40,4 @@ dependencies {
         Libraries.daggerAndroidCompiler,
         Libraries.daggerCompiler
     )
-
-    testImplementations(
-        TestLibraries.junit4,
-        TestLibraries.kotlinTest,
-        TestLibraries.kluent,
-        TestLibraries.kluentAndroid
-    )
 }

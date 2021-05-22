@@ -13,8 +13,14 @@ class AdvertismentData {
 
     class FromServer {
         val advertisementDto = AdResponse(
-            1, 4, "Villers-sur-Mer",
-            250.0, "url pic", 1500000, "GSL EXPLORE", "Maison - Villa", 8
+            1, 4,
+            "Villers-sur-Mer",
+            250.0,
+            "url pic",
+            1500000,
+            "GSL EXPLORE",
+            "Maison - Villa",
+            8
         )
 
         private val totalCount = 4

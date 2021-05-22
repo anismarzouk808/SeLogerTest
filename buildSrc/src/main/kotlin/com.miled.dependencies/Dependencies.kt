@@ -5,12 +5,8 @@ object BuildPlugins {
         const val gradleVersion = "4.0.0"
     }
 
-    const val kotlinGradlePlugin =
-        "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
     const val seLogerConfigGradleModule = "seloger-config-module"
     const val gradlePlugin = "com.android.tools.build:gradle:${Versions.gradleVersion}"
-    const val safeArgsPlugin =
-        "androidx.navigation:navigation-safe-args-gradle-plugin:${Libraries.Versions.navigation}"
     const val androidApplication = "com.android.application"
     const val androidLibrary = "com.android.library"
     const val kotlinAndroid = "kotlin-android"
@@ -42,11 +38,12 @@ object Libraries {
         const val navigation: String = "2.3.1"
         const val rxandroid: String = "2.1.1"
         const val rxjava: String = "2.2.11"
-        const val desuagerJdk: String = "1.0.9"
+        const val androidXCoreKtx = "1.3.2"
+        const val androidXLiveDataKtx = "2.2.0"
+        const val androidXActivityKtx = "1.2.1"
+        const val androidXFragment = "1.3.1"
     }
 
-
-    const val desuagerJdk = "com.android.tools:desugar_jdk_libs"
     const val kotlinStdLib =
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${BuildPlugins.Versions.kotlinVersion}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.jetpack}"
@@ -80,11 +77,21 @@ object Libraries {
     /** https://github.com/JakeWharton/timber */
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
+    const val androidXCoreKtx = "androidx.core:core-ktx:${Versions.androidXCoreKtx}"
+
+    // Artifact : https://mvnrepository.com/artifact/androidx.lifecycle/lifecycle-livedata-ktx
+    const val androidXLiveDataKtx =
+        "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.androidXLiveDataKtx}"
+    const val androidXActivityKtx = "androidx.activity:activity-ktx:${Versions.androidXLiveDataKtx}"
+
     const val navigationFragmentKtx =
         "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     const val navigationRuntimeKtx =
         "androidx.navigation:navigation-runtime-ktx:${Versions.navigation}"
+
+    // Artifact : https://mvnrepository.com/artifact/androidx.fragment/fragment-ktx
+    const val androidXFragmentKtx = "androidx.fragment:fragment-ktx:${Versions.androidXFragment}"
 
     /** Rx */
     const val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxandroid}"
@@ -95,25 +102,14 @@ object Libraries {
 
 object TestLibraries {
     private object Versions {
-        const val mockito = "3.6.28"
-        const val mockitoKotlin = "2.2.11"
-        const val kluent = "1.65"
+        const val mockk = "1.10.0"
         const val junit4 = "4.13"
-        const val testRunner = "1.1.1"
     }
 
     const val junit4 = "junit:junit:${Versions.junit4}"
-    const val kotlinTest =
-        "org.jetbrains.kotlin:kotlin-test-junit:${BuildPlugins.Versions.kotlinVersion}"
-    const val testRunner = "androidx.test:runner:${Versions.testRunner}"
     const val androidJunitRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-    /** https://github.com/mockito/mockito */
-    const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
-    const val mockitoKotlin = "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlin}"
-
-    /** https://github.com/MarkusAmshove/Kluent */
-    const val kluent = "org.amshove.kluent:kluent:${Versions.kluent}"
-    const val kluentAndroid = "org.amshove.kluent:kluent-android:${Versions.kluent}"
+    // https://github.com/mockk/mockk
+    const val mockk = "io.mockk:mockk:${Versions.mockk}"
 }
 

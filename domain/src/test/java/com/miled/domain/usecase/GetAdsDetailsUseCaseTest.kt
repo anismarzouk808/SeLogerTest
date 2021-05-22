@@ -2,34 +2,23 @@ package com.miled.domain.usecase
 
 import com.miled.domain.models.AllModelsTest
 import com.miled.domain.repository.AdsRepository
-import com.miled.domain.utils.whenever
+import io.mockk.every
+import io.mockk.mockk
 import io.reactivex.Single
-import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
 import java.io.IOException
 
 
 class GetAdsDetailsUseCaseTest {
 
-    @Mock
-    private lateinit var adsRepository: AdsRepository
+    private val adsRepository = mockk<AdsRepository>()
 
-    private lateinit var getAdsDetailsUseCase: GetAdsDetailsUseCase
-
-    @Before
-    fun setUp() {
-        MockitoAnnotations.openMocks(this)
-        getAdsDetailsUseCase = GetAdsDetailsUseCase(adsRepository)
-    }
+    private val getAdsDetailsUseCase = GetAdsDetailsUseCase(adsRepository)
 
     @Test
     fun `test success call get advertisement details`() {
-        val allmodels = AllModelsTest()
-        whenever(adsRepository.getAdDetails(1)).thenReturn(
-            Single.just(allmodels.advertisementItem)
-        )
+        val allModels = AllModelsTest()
+        every { adsRepository.getAdDetails(1) } returns Single.just(allModels.advertisementItem)
 
         getAdsDetailsUseCase(1).test().assertComplete()
         getAdsDetailsUseCase(1).test().assertNoErrors()
@@ -38,7 +27,7 @@ class GetAdsDetailsUseCaseTest {
     @Test
     fun `test error call get advertisement details`() {
         val error = IOException()
-        whenever(adsRepository.getAdDetails(1)).thenReturn(Single.error(error))
+        every { adsRepository.getAdDetails(1) } returns Single.error(error)
         getAdsDetailsUseCase(1).test().assertError(error)
     }
 }

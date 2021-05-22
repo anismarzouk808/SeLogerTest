@@ -19,8 +19,7 @@ dependencies {
 
     testImplementations(
         TestLibraries.junit4,
-        TestLibraries.kotlinTest,
-        TestLibraries.mockito
+        TestLibraries.mockk
     )
 
 

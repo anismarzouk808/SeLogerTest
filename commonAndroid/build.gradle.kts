@@ -20,11 +20,8 @@ android {
 dependencies {
 
     implementations(
-        Libraries.kotlinStdLib,
         Libraries.fresco,
         Libraries.timber,
-        Libraries.rxAndroid,
-        Libraries.navigationFragmentKtx,
         Libraries.navigationUiKtx,
         Libraries.constraintLayout
     )

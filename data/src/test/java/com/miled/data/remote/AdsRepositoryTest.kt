@@ -1,53 +1,43 @@
 package com.miled.data.remote
 
 import com.miled.data.entity.AdvertismentData
-import com.miled.domain.repository.AdsRepository
+import io.mockk.every
+import io.mockk.mockk
 import io.reactivex.Single
-import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito
-import org.mockito.kotlin.mock
 
 
 class AdsRepositoryTest {
 
-    private lateinit var apiService: AdsApiService
-    private lateinit var data: AdvertismentData
-    private lateinit var repository: AdsRepository
-
-    @Before
-    fun setUp() {
-        apiService = mock()
-        data = AdvertismentData()
-        repository = AdsRepositoryImp(apiService)
-    }
-
+    private val apiService = mockk<AdsApiService>()
+    private val repository = AdsRepositoryImp(apiService)
 
     @Test
     fun `get All Advertisement`() {
         // Given
-        Mockito.`when`(apiService.getAllAds())
-            .thenAnswer { Single.just(data.fromServer.listingResponseDto) }
+        val response = AdvertismentData().fromServer.listingResponseDto
+        every { apiService.getAllAds() } returns Single.just(response)
+
         // When
         val observer = repository.getAds().test()
+
         // Then
         observer.assertComplete()
             .assertNoErrors()
             .assertValueCount(1)
-            .assertValue(data.domain.listingResponse)
+            .assertValue(AdvertismentData().domain.listingResponse)
     }
 
     @Test
     fun `get Advertisement Detail`() {
         // Given
-        Mockito.`when`(apiService.getAdsDetail(1))
-            .thenAnswer { Single.just(data.fromServer.advertisementDto) }
+        every { apiService.getAdsDetail(1) } returns Single.just(AdvertismentData().fromServer.advertisementDto)
         // When
         val observer = repository.getAdDetails(1).test()
         // Then
         observer.assertComplete()
             .assertNoErrors()
             .assertValueCount(1)
-            .assertValue(data.domain.advertisement)
+            .assertValue(AdvertismentData().domain.advertisement)
     }
 }

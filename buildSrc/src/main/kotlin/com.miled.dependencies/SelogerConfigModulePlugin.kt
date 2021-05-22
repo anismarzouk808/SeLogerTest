@@ -20,7 +20,7 @@ class SelogerConfigModulePlugin : Plugin<Project> {
                     versionCode = 1
                     versionName = "1.0.0"
 
-                    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+                    testInstrumentationRunner = TestLibraries.androidJunitRunner
                 }
 
                 compileOptions {
