@@ -21,3 +21,5 @@ local.properties
 #Diff files
 *.orig
 _build/
+
+.idea/
